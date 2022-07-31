@@ -50,11 +50,8 @@ chmod 777 编译生成好的文件名
 第四步：clone GC 所需要的资源  
 -
 ```
-git clone https://github.com/Koko-boya/Grasscutter_Resources
+git clone https://github.com/Koko-boya/Grasscutter_Resources ./resources
 #clone仓库
-
-mv Grasscutter_Resources/Resources ../resources
-#将文件移动到上层目录
 ```
 第五步：使用mitmdump进行代理
 -
