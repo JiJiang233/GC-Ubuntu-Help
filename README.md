@@ -11,37 +11,11 @@ SSH：MobaXterm v22
 Java：18  
 python：3.9
 -
-第一步：安装Java 18并配置环境变量
+第一步：安装Java 18
 -
 ```
-sudo mkdir /usr/java
-#创建目录
-
-wget https://download.oracle.com/java/18/latest/jdk-18_linux-x64_bin.tar.gz
-#下载Java18
-
-tar -zxvf jdk-18_linux-x64_bin.tar.gz
-#解压Java18
-```
-![](https://img1.imgtp.com/2022/07/24/7blLfzdC.png)
-
-解压后的文件夹名可能会不一致，使用ls指令观察
-```
-sudo mv 文件夹名 /usr/java
-#移动文件夹到/usr/java
-
-sudo vim /etc/profile
-#打开profile文件，配置环境变量，切换到文本底部，复制以下四行文本按“i”键进入编辑模式粘贴（注意文件夹名）
-
-export JAVA_HOME=/usr/java/文件夹名
-export CLASSPATH=.:$JAVA_HOME/lib
-export PATH=.:$JAVA_HOME/bin:$JAVA_HOME/lib:$PATH
-export PATH=/usr/local/mongodb6/bin:$PATH
-#粘贴后按“Esc”键进入命令模式并输入“:wq”保存退出
-#这里的MongoDB在下面会用到
-
-source /etc/profile 
-#刷新
+sudo apt install openjdk-18-jdk  
+#通过apt安装jdk
 
 java -version
 #验证操作的有效性
@@ -49,21 +23,11 @@ java -version
 第二步：安装mongodb
 -
 ```
-wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu2004-6.0.0.tgz
+wget https://repo.mongodb.org/apt/ubuntu/dists/focal/mongodb-org/6.0/multiverse/binary-amd64/mongodb-org-server_6.0.0_amd64.deb
 # 下载
 
-tar -zxvf mongodb-linux-x86_64-ubuntu2004-6.0.0.tgz
-# 解压
-
-sudo mv mongodb-linux-x86_64-ubuntu2004-6.0.0/ /usr/local/mongodb6
-# 将解压包拷贝到指定目录
-
-sudo mkdir -p /var/lib/mongo
-sudo mkdir -p /var/log/mongodb
-
-sudo chmod 777 /var/lib/mongo
-sudo chmod 777 /var/log/mongodb
-#这里两条root用户不用执行
+sudo dpkg -i mongodb-org-server_6.0.0_amd64.deb
+#安装
 ```
 第三步：clone仓库并编译
 -
